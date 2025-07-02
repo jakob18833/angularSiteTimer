@@ -19,24 +19,24 @@ app.get('/file', (req, res) => {
 
     if (!fs.existsSync(filename)) {
         fs.writeFile(filename, defaultValue, (error) => {
-        if (error) {
-            console.error("Error creating a new file: ", error);
-            return res.status(500).send(defaultValue);
+            if (error) {
+                console.error("Error creating a new file: ", error);
+                return res.status(500).send(defaultValue);
 
-        };
-        console.warn("Created a new file.");
-        return res.status(404).send(defaultValue);
-    })
+            };
+            console.warn("Created a new file.");
+            return res.status(404).send(defaultValue);
+        })
+        return;
+    } else {
+        fs.readFile(filename, 'utf8', (error, data) => {
+            if (error) {
+                return res.status(500).send(defaultValue);
+            } else {
+                return res.status(200).send(data);
+            }
+        })
     }
-
-
-    fs.readFile(filename, 'utf8', (error, data) => {
-        if (error) {
-            return res.status(500).send(defaultValue);
-        } else {
-            return res.status(200).send(data);
-        }
-    })
 })
 
 app.post('/', (req, res) => {
