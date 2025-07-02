@@ -34,7 +34,7 @@ app.get('/file', (req, res) => {
         if (error) {
             return res.status(500).send(defaultValue);
         } else {
-            res.status(200).send(data);
+            return res.status(200).send(data);
         }
     })
 })
