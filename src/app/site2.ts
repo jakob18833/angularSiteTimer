@@ -4,6 +4,7 @@ import {Component} from '@angular/core'
     selector:'app-site1',
     template:`<body style="background-color:chocolate;">
 
+    <p>Site 2</p>
 
     </body>`
 })
